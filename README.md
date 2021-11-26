@@ -21,6 +21,21 @@ Coming Soon
 
 ```
 
+### DevTools
+
+The project uses recoil and some experimental dev tools.
+
+`src/components/DevTools`
+
+In the browser, you can use these commands:
+
+- changeMonitorKey `ctrl-m`
+- changePositionKey `ctrl-q`
+- toggleVisibilityKey `ctrl-h`
+
+The console and dock monitor will update after recoil state changes
+
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
