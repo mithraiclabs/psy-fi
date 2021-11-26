@@ -15,8 +15,8 @@ Coming Soon
 <ul>
   <li>Deploying the environment for the squad</li>
   <li>Default `create-react-app`</li>
-  <li>Architectural mods to follow</li>
-  <li>Re our most current patterns</li>
+    <li>Architectural mods to follow</li>
+      <li>Re our most current patterns</li>
 </ul>
 
 ```

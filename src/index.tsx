@@ -1,13 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+import { WalletKitProvider, ConnectWalletButton } from '@gokiprotocol/walletkit';
+import { RecoilRoot } from 'recoil';
 import reportWebVitals from './reportWebVitals';
 
+import './styles/app.global.scss';
+import styles from './styles/app.module.scss';
+
+import app_data from './content/app.json';
+
+import { DevTools } from './components/DevTools';
+import HeaderNav from './components/HeaderNav';
+
+import Home from './pages/Home';
+
+const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
+const DisconnectWallet = () => (<>Disconnect Wallet</>);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <WalletKitProvider
+    defaultNetwork='devnet'
+    app={{
+      name: app_data.name
+    }}>
+    <RecoilRoot>
+      <DevTools />
+      <React.StrictMode>
+        <div className={styles.app}>
+          <HeaderNav />
+          <main className={styles.main}>
+            <div className={styles.view}>
+              <Router>
+                <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />
+                  <Route exact path={['/disconnect','/logout','/signout']} component={DisconnectWallet} />
+                </Switch>
+              </Router>
+            </div>
+          </main>
+        </div>
+      </React.StrictMode>
+    </RecoilRoot>
+  </WalletKitProvider>,
   document.getElementById('root')
 );
 
