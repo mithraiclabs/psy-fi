@@ -21,6 +21,10 @@ Coming Soon
 
 ```
 
+### Getting Started
+* Run the Solana blockchain with the dependent programs
+    * `npx ts-node buildlab/whole-shebang/index.ts`
+
 ### DevTools
 
 The project uses recoil and some experimental dev tools.
