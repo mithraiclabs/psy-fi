@@ -1,0 +1,1110 @@
+{
+  "version": "0.0.0",
+  "name": "psy_euros",
+  "instructions": [
+    {
+      "name": "initializeAsset",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "assetMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "priceCurrencyMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "pythAggPriceOracle",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "markMax",
+          "type": "u16"
+        },
+        {
+          "name": "markMin",
+          "type": "u16"
+        },
+        {
+          "name": "maintMargin",
+          "type": "u16"
+        },
+        {
+          "name": "contractSize",
+          "type": "u64"
+        },
+        {
+          "name": "contractDecimals",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "initializeOptionMarket",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "aaobProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "optionMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "market",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "eventQueue",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bids",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "asks",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "optionType",
+          "type": "u8"
+        },
+        {
+          "name": "expiration",
+          "type": "i64"
+        },
+        {
+          "name": "strike",
+          "type": "u64"
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "createPortfolio",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "portfolio",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "assetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdraw",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "portfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "walletDestination",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "pythAggPriceOracle",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "poolAuthorityBump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "assetSrc",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "assetDest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "portfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "placeOrders",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "aaobProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "portfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "assetMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "pythAggPriceOracle",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "orders",
+          "type": {
+            "vec": {
+              "defined": "NewOrderParams"
+            }
+          }
+        },
+        {
+          "name": "strategyType",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "cancelOrders",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "aaobProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "portfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "assetMint",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "orderIds",
+          "type": {
+            "vec": "u128"
+          }
+        }
+      ]
+    },
+    {
+      "name": "settleExpired",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "aaobProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "portfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "assetMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "orderId",
+          "type": {
+            "vec": "u128"
+          }
+        }
+      ]
+    },
+    {
+      "name": "consumeEvents",
+      "accounts": [
+        {
+          "name": "crank",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "aaobProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "assetMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "optionMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "market",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "eventQueue",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bids",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "asks",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxEvents",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "exerciseOption",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "optionMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pythAggPriceOracle",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "updateMarkPrices",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "aaobProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "portfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "liquidate",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "availableAssetPair",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "targetPortfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "liquidatorPortfolio",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pythAggPriceOracle",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "opMode",
+          "type": "u8"
+        },
+        {
+          "name": "optionalAmount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "AvailableAssetPair",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tokenPool",
+            "type": "publicKey"
+          },
+          {
+            "name": "assetMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "assetDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "markMax",
+            "type": "u16"
+          },
+          {
+            "name": "markMin",
+            "type": "u16"
+          },
+          {
+            "name": "maintMargin",
+            "type": "u16"
+          },
+          {
+            "name": "contractSize",
+            "type": "u64"
+          },
+          {
+            "name": "contractDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "pythAggPriceOracle",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OptionMarket",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "availableAssetPair",
+            "type": "publicKey"
+          },
+          {
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "name": "strike",
+            "type": "u64"
+          },
+          {
+            "name": "optionType",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "market",
+            "type": "publicKey"
+          },
+          {
+            "name": "exercised",
+            "type": "bool"
+          },
+          {
+            "name": "priceAtExpiration",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Portfolio",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "availableAssetPair",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateral",
+            "type": "u64"
+          },
+          {
+            "name": "openOrdersCollateral",
+            "type": "u64"
+          },
+          {
+            "name": "positions",
+            "type": {
+              "vec": {
+                "defined": "Position"
+              }
+            }
+          },
+          {
+            "name": "openOrders",
+            "type": {
+              "vec": {
+                "defined": "OpenOrder"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "CallbackInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "portfolio",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NewOrderParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "maxBaseQty",
+            "type": "u64"
+          },
+          {
+            "name": "maxQuoteQty",
+            "type": "u64"
+          },
+          {
+            "name": "limitPrice",
+            "type": "u64"
+          },
+          {
+            "name": "side",
+            "type": {
+              "defined": "Side"
+            }
+          },
+          {
+            "name": "matchLimit",
+            "type": "u64"
+          },
+          {
+            "name": "callbackInfo",
+            "type": "bytes"
+          },
+          {
+            "name": "postOnly",
+            "type": "bool"
+          },
+          {
+            "name": "postAllowed",
+            "type": "bool"
+          },
+          {
+            "name": "selfTradeBehavior",
+            "type": {
+              "defined": "SelfTradeBehavior"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "OpenOrder",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u128"
+          },
+          {
+            "name": "optionMarket",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Position",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "name": "strike",
+            "type": "u64"
+          },
+          {
+            "name": "optionType",
+            "type": "u8"
+          },
+          {
+            "name": "optionAddress",
+            "type": "publicKey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": "Direction"
+            }
+          },
+          {
+            "name": "premium",
+            "type": "u64"
+          },
+          {
+            "name": "markPrice",
+            "type": "u64"
+          },
+          {
+            "name": "markValidUntil",
+            "type": "i64"
+          },
+          {
+            "name": "groupedPositions",
+            "type": "bytes"
+          },
+          {
+            "name": "strategyLeg",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Side",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Bid"
+          },
+          {
+            "name": "Ask"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SelfTradeBehavior",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "DecrementTake"
+          },
+          {
+            "name": "CancelProvide"
+          },
+          {
+            "name": "AbortTransaction"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Direction",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Short"
+          },
+          {
+            "name": "Long"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OptionType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Call"
+          },
+          {
+            "name": "Put"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 300,
+      "name": "SignerDoesNotOwnPortfolio",
+      "msg": "Portfolio owner must be a signer"
+    },
+    {
+      "code": 301,
+      "name": "CantWithdrawNotEnoughCollateral",
+      "msg": "Withdrawl would violate collateral requirements"
+    },
+    {
+      "code": 302,
+      "name": "NotEnoughFunds",
+      "msg": "Not enough funds to withdraw, have you tried having more money?"
+    },
+    {
+      "code": 303,
+      "name": "PoolIsInsolvent",
+      "msg": "The pool does not have enough funds. This should be impossible."
+    },
+    {
+      "code": 304,
+      "name": "MintTokenMismatch",
+      "msg": "Token type mismatch, both destination and recipient must use the same mint"
+    },
+    {
+      "code": 305,
+      "name": "TokenPoolDoesNotMatch",
+      "msg": "TokenPool does not match AvailableAssetPair"
+    },
+    {
+      "code": 306,
+      "name": "ExpiredPositionsWithdrawFailed",
+      "msg": "Portfolio has expired positions, you may not withdraw until they are settled"
+    },
+    {
+      "code": 307,
+      "name": "ExpiredPositionsDepositFailed",
+      "msg": "Portfolio has expired positions, you may not deposit until they are settled"
+    },
+    {
+      "code": 308,
+      "name": "ExpiredPositionsPlaceOrderFailed",
+      "msg": "Portfolio has expired positions, you may not place orders until they are settled"
+    },
+    {
+      "code": 309,
+      "name": "InsufficientPortfolioCollateral",
+      "msg": "Portfolio has insufficient collateral"
+    },
+    {
+      "code": 310,
+      "name": "InsufficientPortfolioCollateralPremium",
+      "msg": "Portfolio has insufficient collateral. You may be unable to afford the premium."
+    },
+    {
+      "code": 311,
+      "name": "NumericalOverflow",
+      "msg": "Numerical overflow"
+    },
+    {
+      "code": 312,
+      "name": "OrderIdNotFoundInPortfolio",
+      "msg": "Order id not found in Portfolio"
+    },
+    {
+      "code": 313,
+      "name": "MakerCallBackInfoDoesNotMatch",
+      "msg": "Maker callback info does not match remaining_accounts"
+    },
+    {
+      "code": 314,
+      "name": "CallBackInfoDoesNotMatchPortfolio",
+      "msg": "Callback info does not match portfolio"
+    },
+    {
+      "code": 315,
+      "name": "AssetPairZerovalue",
+      "msg": "Asset contract size and decimals must not be zero"
+    },
+    {
+      "code": 316,
+      "name": "OracleConfidenceTooLow",
+      "msg": "Oracle not confident in asset value, try again later"
+    },
+    {
+      "code": 317,
+      "name": "OracleReportingZeroOrNegative",
+      "msg": "Oracle price is zero/negative, likely a problem with the Oracle. Try again later"
+    },
+    {
+      "code": 318,
+      "name": "MarkPriceInstructionIssue",
+      "msg": "Mark price instruction got unexpected arguments."
+    },
+    {
+      "code": 319,
+      "name": "MarkPriceMissingOrExpired",
+      "msg": "Missing or expired mark price, run the update mark prices instruction first! You may also be missing\n        account data required to compute an expired mark price."
+    },
+    {
+      "code": 320,
+      "name": "CollateralOnExpiredAsset",
+      "msg": "Can't read collateral of an expired asset!"
+    },
+    {
+      "code": 321,
+      "name": "InsufficientPortfolioCollateralToPlaceOrder",
+      "msg": "Can't place order, not enough collateral. Deposit more collateral."
+    },
+    {
+      "code": 322,
+      "name": "MissingAccountsForOrder",
+      "msg": "Missing accounts required to place the order. Provide all 5 AAOB accounts per order."
+    },
+    {
+      "code": 323,
+      "name": "CantLiquidateTooMuchCollateral",
+      "msg": "This portfolio is not liquidatable, it has enough collateral."
+    },
+    {
+      "code": 324,
+      "name": "LiquidatorNotEnoughCollateral",
+      "msg": "The liquidator does not have enough collateral to complete this liquidation."
+    },
+    {
+      "code": 325,
+      "name": "LiquidatorCantAffordContracts",
+      "msg": "Liquidator can't afford any contracts. Try adding more collateral or raising spend limits."
+    },
+    {
+      "code": 326,
+      "name": "ExpirationHasNotPassed",
+      "msg": "Cannot exercise OptionMarket prior to expiration"
+    },
+    {
+      "code": 327,
+      "name": "OptionMarketAssetPairMismatch",
+      "msg": "OptionMarket and AssetPair do not match"
+    },
+    {
+      "code": 328,
+      "name": "PythOracleDoesNotMatchAssetPair",
+      "msg": "Pyth oracle address does not match AvailableAssetPair"
+    },
+    {
+      "code": 329,
+      "name": "StrategyCantFillAtomically",
+      "msg": "At least one strategy leg could not be filled at the given prices. \n        Adjust your limit prices, place the order at market price, or try again later."
+    },
+    {
+      "code": 330,
+      "name": "StrategyBadLegCount",
+      "msg": "There is no valid strategy that uses the number of legs provided."
+    },
+    {
+      "code": 331,
+      "name": "StrategyBadExpiration",
+      "msg": "All legs in a strategy must expire at the same time."
+    },
+    {
+      "code": 332,
+      "name": "StrategyBadAmount",
+      "msg": "All legs in a strategy must be placed for the same amount of contracts."
+    },
+    {
+      "code": 333,
+      "name": "StrategyBadType",
+      "msg": "Unknown strategy type, check the that the supplied type is correct."
+    },
+    {
+      "code": 334,
+      "name": "StrategyWrongLegCount",
+      "msg": "Wrong number of legs for the given strategy."
+    },
+    {
+      "code": 335,
+      "name": "StrategyLegsOutOfOrder",
+      "msg": "Legs provided out of order. For spreads, pass SHORT leg then LONG leg. For butterflies...TBD"
+    },
+    {
+      "code": 336,
+      "name": "StrategyLegsBadProperties",
+      "msg": "Leg properties do not match the strategy. E.g., tried to pass a put into a call spread."
+    },
+    {
+      "code": 337,
+      "name": "AssetPairValidationIssue",
+      "msg": "AssetPair does not match"
+    },
+    {
+      "code": 338,
+      "name": "MarketAssetPairValidationIssue",
+      "msg": "Market asset pair does not match"
+    },
+    {
+      "code": 339,
+      "name": "MintValidationIssue",
+      "msg": "Mint does not match"
+    },
+    {
+      "code": 340,
+      "name": "AAOBValidationIssue",
+      "msg": "AAOB program does not match known address"
+    },
+    {
+      "code": 341,
+      "name": "OracleAssetPairValidationIssue",
+      "msg": "Oracle doesn't match registered asset pair oracle"
+    }
+  ]
+}
