@@ -2,7 +2,7 @@
 import {
   useConnectedWallet
 } from '@saberhq/use-solana';
-import Init from '../components/Init';
+import ContentHome from '../components/ContentHome';
 import styles from '../styles/Home.module.scss';
 
 const Home = () => {
@@ -10,12 +10,10 @@ const Home = () => {
 
   return (
     <section className={styles.home}>
-      {/* Auth Demo */}
       {
         wallet?.connected ? null : <h1>Please Connect Wallet<br /><br /></h1>
       }
-      {/* Project Init Demo */}
-      <Init />
+      <ContentHome />
     </section>
   )
 }
