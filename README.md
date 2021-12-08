@@ -13,10 +13,9 @@ Coming Soon
 
 <h3>Status</h3>
 <ul>
-  <li>Deploying the environment for the squad</li>
-  <li>Default `create-react-app`</li>
-    <li>Architectural mods to follow</li>
-      <li>Re our most current patterns</li>
+  <li>Project planning</li>
+  <li>Views w/ mock data</li>
+  <li>First iterations blockchain setup</li>
 </ul>
 
 ```
