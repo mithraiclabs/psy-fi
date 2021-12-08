@@ -7,4 +7,5 @@ const Template = () => {
     </div>
   );
 };
-  
+
+export default Template;

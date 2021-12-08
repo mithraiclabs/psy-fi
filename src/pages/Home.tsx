@@ -7,7 +7,6 @@ import styles from '../styles/Home.module.scss';
 
 const Home = () => {
   const wallet = useConnectedWallet();
-
   return (
     <section className={styles.home}>
       {

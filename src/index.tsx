@@ -17,7 +17,9 @@ import app_data from './content/app.json';
 import { DevTools } from './components/DevTools';
 import HeaderNav from './components/HeaderNav';
 
+import Admin from './pages/Admin';
 import Home from './pages/Home';
+import Market from './pages/Market';
 
 const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
@@ -38,6 +40,8 @@ ReactDOM.render(
               <Router>
                 <Switch>
                   <Route exact path='/' component={Home} />
+                  <Route exact path='/admin' component={Admin} />
+                  <Route exact path='/market' component={Market} />
                   <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />
                   <Route exact path={['/disconnect','/logout','/signout']} component={DisconnectWallet} />
                 </Switch>
