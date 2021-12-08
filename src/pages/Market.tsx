@@ -10,6 +10,7 @@ const Market = () => {
       {
         wallet?.connected ? null : <h2>Please Connect Wallet<br /><br /></h2>
       }
+      <h1>Market</h1>
       <MarketsDisplay />
     </section>
   )

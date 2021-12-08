@@ -1,9 +1,75 @@
 @import './globals.scss';
 
-.admin {
+.market {
+  position: relative;
+  // * {
+  //   border: 1px solid yellow;
+  // }
+}
+
+.market-display {
+  background: rgba(100, 100, 100, 0.1);
+  border-radius: 3px;
+  margin: 20px;
+  padding: 20px;
   position: relative;
   text-align: left;
   // * {
   //   border: 1px solid yellow;
   // }
+}
+
+.market-display-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 10px;
+  margin: 28px 0;
+  .mdc-card {
+    background: darken(#111, 2%);
+    border: 1px solid cyan;
+    border-radius: 3px;
+    padding: 20px;
+    table {
+      margin: 0 auto;
+      td {
+        &:first-of-type {
+          padding-right: 15px;
+          text-align: right;
+        }
+      }
+    }
+    table tr:first-of-type td {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  }
+}
+
+.market-display-table {
+  table {
+    margin: 28px 0;
+    text-align: center;
+    width: 100%;
+  }
+  td {
+    border-top: 1px solid cyan;
+    padding: 7px 0;
+    width: 33%;
+  }
+  tr:last-of-type {
+    td {
+      border-bottom: 1px solid cyan;
+    };
+  }
+  thead th {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  tbody tr:nth-child(odd) {
+    background: darken(#111, 2%);
+  }
+  tbody tr td:first-of-type {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
 }

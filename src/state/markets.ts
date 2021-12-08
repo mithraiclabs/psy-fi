@@ -2,9 +2,12 @@ import {
   atom,
   selector
 } from 'recoil';
+import { Market } from '../types';
+import marketListMock from '../content/marketList.mock.json';
 
 const assetTypes = ['btc', 'eth', 'sol', 'usdc'];
 const marketTypes = ['call', 'put'];
+const marketUiStyles = ['cards', 'list', 'table'];
 
 // -------
 
@@ -18,9 +21,20 @@ export const atomAssetUnderlying = atom({
   default: assetTypes[0]
 });
 
+export const atomMarketList = atom<Market[]>({
+  key: 'atomMarketList',
+  default: marketListMock,
+});
+
 export const atomMarketType = atom({
   key: 'atomMarketType',
   default: marketTypes[0]
+});
+
+export const atomMarketUiStyle = atom({
+  key: 'atomMarketUiStyle',
+  default: marketUiStyles[0]
+  // default: marketUiStyles[2]
 });
 
 // -------
@@ -36,6 +50,13 @@ export const selectAssetUnderlying = selector({
   key: 'selectAssetUnderlying',
   get: ({ get }) => {
     return get(atomAssetUnderlying);
+  }
+});
+
+export const selectMarketList = selector({
+  key: 'selectMarketList',
+  get: ({ get }) => {
+    return get(atomMarketList);
   }
 });
 

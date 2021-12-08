@@ -14,8 +14,13 @@ Coming Soon
 <h3>Status</h3>
 <ul>
   <li>Project planning</li>
-  <li>Views w/ mock data</li>
   <li>First iterations blockchain setup</li>
+  <li>Lo-Res w/ mock data</li>
+  <li>Hi-Res blockchain integration</li>
+  <li>Devnet</li>
+  <li>Hi-Res UX Iteration 1</li>
+  <li>Mainnet</li>
+  <li>Hi-Res UX Iteration X</li>
 </ul>
 
 ```
