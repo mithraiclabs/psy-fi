@@ -3,14 +3,15 @@ import {
   selector
 } from 'recoil';
 
-export const helpEnabled = atom({
-  key: 'helpEnabled',
+export const atomHelpEnabled = atom({
+  key: 'atomHelpEnabled',
   default: true
+  // default: false
 });
 
 export const selectHelpEnabled = selector({
   key: 'selectHelpEnabled',
   get: ({ get }) => {
-    return get(helpEnabled);
+    return get(atomHelpEnabled);
   }
 });

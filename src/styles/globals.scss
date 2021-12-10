@@ -26,31 +26,31 @@ $fontWeightBody: 300;
 $lineHeightBody: $fontSizeBody * 1.1;
 
 $fontFamilyHeading: 'Goldman', serif;
-$fontWeightHeading: 400;
+$fontWeightHeading: 600;
 $letterSpacingHeading: 1.5px;
 
 $fontSizeSup: 11px;
 $letterSpacingSup: 1.5px;
 
-$fontSizeH1: 32px;
+$fontSizeH1: 25px;
 $lineHeightH1: $fontSizeH1;
 
-$fontSizeH2: $fontSizeH1 - 5;
+$fontSizeH2: $fontSizeH1 - 3;
 $lineHeightH2: $fontSizeH2;
 
-$fontSizeH3: $fontSizeH1 - 10;
+$fontSizeH3: $fontSizeH1 - 8;
 $lineHeightH3: $fontSizeH3;
 
-$fontSizeH4: $fontSizeH1 - 15;
+$fontSizeH4: $fontSizeH1 - 13;
 $lineHeightH4: $fontSizeH4;
 
-$fontSizeH5: $fontSizeH1 - 20;
+$fontSizeH5: $fontSizeH1 - 18;
 $lineHeightH5: $fontSizeH5;
 
-$fontSizeH6: $fontSizeH1 - 25;
+$fontSizeH6: $fontSizeH1 - 23;
 $lineHeightH6: $fontSizeH5;
 
-$textShadowHeading: 0 0 42px $glowBlue;
+$textShadowHeading: 0 0 32px $glowBlue;
 
 
 // Layout (temporary values)

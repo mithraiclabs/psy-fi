@@ -1,0 +1,14 @@
+@import './globals.scss';
+
+.user {
+  position: relative;
+  text-align: left;
+  // * {
+  //   border: 1px solid yellow;
+  // }
+}
+
+.connect {
+  background: $pink;
+  margin-bottom: 20px;
+}

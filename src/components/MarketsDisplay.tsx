@@ -1,5 +1,6 @@
 import styles from '../styles/Market.module.scss';
-// import React, { useState } from 'react';
+import styles_help from '../styles/Help.module.scss';
+import React, { useEffect, useState } from 'react';
 import {
   useRecoilState,
   useRecoilValue
@@ -20,33 +21,147 @@ import {
   TOGGLE
   /src/state/markets -> atomMarketUiStyle -> default
 */
+type PropsMEBS = {
+  i: number;
+};
+const MarketsExperimentalBuySell = (props: PropsMEBS) => {
+  console.log('MarketsExperimentalBuySell', JSON.stringify(props, null, 2));
+  return (
+    <div className={styles['market-experimental-buy-sell']}>
+      <div>Buy</div>
+      <div>Sell</div>
+      <div />
+      <div />
+    </div>
+  );
+};
+type PropsMDCC = {
+  ask: number;
+  assetQuote: string;
+  bid: number;
+  i: number;
+  onClick: React.MouseEventHandler<HTMLDivElement>;
+  selected?: boolean;
+  strike: number;
+}
+const MarketsDisplayCardsContent = (props: PropsMDCC) => {
+  // console.log('MarketsDisplayCardsContent', props);
+  const selectedStyles: React.CSSProperties = {
+    gridColumn : (props.selected) ? 'span 2' : '',
+    background: (props.selected) ? 'cyan' : '',
+    color: (props.selected) ? '#111' : '',
+    borderColor: (props.selected) ? 'cyan' : '#555'
+  };
+  return (
+    <div
+      className={styles['mdc-card']}
+      onClick={props.onClick}
+      style={selectedStyles}>
+      <table>
+        <tbody>
+          <tr>
+            <td>Strike</td>
+            <td>{props.strike}</td>
+          </tr>
+          <tr>
+            <td>Bid</td>
+            <td>{props.bid}</td>
+          </tr>
+          <tr>
+            <td>Ask</td>
+            <td>{props.ask}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div className={styles['mdc-card-asset-quote']}>
+        {props.assetQuote.toUpperCase()}
+      </div>
+    </div>
+  );
+};
 const MarketsDisplayCards = () => {
   const marketList = useRecoilValue(selectMarketList);
+  const [
+    assetQuote
+    // setassetQuote
+  ] = useRecoilState(atomAssetQuote);
+  const [
+    selectedCard,
+    setSelectedCard
+  ] = useState(-1);
+  useEffect(() => {
+    console.log('Selected:', selectedCard);
+  }, [selectedCard]) ;
   return (
     <div className={styles['market-display-cards']}>
       {
-        marketList.map((item, i) => {
-          return (
-            <div key={i} className={styles['mdc-card']}>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>Strike</td>
-                    <td>{item.strike}</td>
-                  </tr>
-                  <tr>
-                    <td>Bid</td>
-                    <td>{item.bid}</td>
-                  </tr>
-                  <tr>
-                    <td>Ask</td>
-                    <td>{item.ask}</td>
-                  </tr>
-                </tbody>
-              </table>
+        (selectedCard === -1) ?
+          <>
+            {
+
+              // type PropsMDCC = {
+              //   ask: number;
+              //   assetQuote: string;
+              //   bid: number;
+              //   i: number;
+              //   strike: number;
+              // }
+
+              // Card not selected present unfiltered list
+              marketList.map((item, i) => {
+                return <MarketsDisplayCardsContent
+                         ask={item.ask}
+                         assetQuote={assetQuote}
+                         bid={item.bid}
+                         i={i}
+                         key={i}
+                         onClick={(e) => {
+                           console.log('i', i);
+                           setSelectedCard(i);
+                         }}
+                         strike={item.strike} />
+              })
+
+            }
+          </> :
+          <>
+            {
+              // Present cards up to including selected card
+              marketList.map((item, i) => {
+                return (i <= selectedCard) ? <MarketsDisplayCardsContent
+                         ask={item.ask}
+                         assetQuote={assetQuote}
+                         bid={item.bid}
+                         i={i}
+                         key={i}
+                         onClick={(e) => {
+                           console.log('i', i);
+                           setSelectedCard(i);
+                         }}
+                         selected={(i === selectedCard)}
+                         strike={item.strike} /> : null
+              })
+            }
+            <div className={styles['experimental-buy-sell-container']}>
+              <MarketsExperimentalBuySell i={selectedCard} />
             </div>
-          );
-        })
+            {
+              // Present cards after selected card
+              marketList.map((item, i) => {
+                return (i > selectedCard) ? <MarketsDisplayCardsContent
+                         ask={item.ask}
+                         assetQuote={assetQuote}
+                         bid={item.bid}
+                         i={i}
+                         key={i}
+                         onClick={(e) => {
+                           console.log('i', i);
+                           setSelectedCard(i);
+                         }}
+                         strike={item.strike} /> : null
+              })
+            }
+          </>
       }
     </div>
   );
@@ -58,6 +173,10 @@ const MarketsDisplayCards = () => {
 */
 const MarketsDisplayTable = () => {
   const marketList = useRecoilValue(selectMarketList);
+  const [
+    assetQuote
+    // setassetQuote
+  ] = useRecoilState(atomAssetQuote);
   return (
     <div className={styles['market-display-table']}>
       <table>
@@ -79,7 +198,7 @@ const MarketsDisplayTable = () => {
           marketList.map((item, i) => {
             return (
               <tr key={i}>
-                <td>{item.strike}</td>
+                <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
                 <td>{item.bid}</td>
                 <td>{item.ask}</td>
               </tr>
@@ -94,10 +213,10 @@ const MarketsDisplayTable = () => {
 
 const MarketsDisplay = () => {
   const helpEnabled = useRecoilValue(selectHelpEnabled);
-  const [
-    assetQuote
-    // setassetQuote
-  ] = useRecoilState(atomAssetQuote);
+  // const [
+  //   assetQuote
+  //   // setassetQuote
+  // ] = useRecoilState(atomAssetQuote);
   const [
     assetUnderlying
     // setAssetUnderlying
@@ -107,16 +226,16 @@ const MarketsDisplay = () => {
     // setMarketType
   ] = useRecoilState(atomMarketType);
   const [
-    marketUiStyle,
+    marketUiStyle
     // setMarketUiStyle
   ] = useRecoilState(atomMarketUiStyle);
 
   return (
     <div className={styles['market-display']}>
       <h2>{assetUnderlying.toUpperCase()} {`${marketType}s`.toUpperCase()}</h2>
-      <p>Quoted in {assetQuote.toUpperCase()}</p>
+      {/*<p>Quoted in {assetQuote.toUpperCase()}</p>*/}
       {
-        helpEnabled ? <div className={styles.help}>Lorem Ipsum Dolor Sit Amet</div> : null
+        helpEnabled ? <div className={styles_help['help-v1']}><span>HELP</span> Lorem ipsum, helpful explainer, dolor sit amet. Toggle in recoil to disable</div> : null
       }
       <div>
         {
