@@ -35,6 +35,7 @@ const MarketsExperimentalBuySell = (props: PropsMEBS) => {
     </div>
   );
 };
+
 type PropsMDCC = {
   ask: number;
   assetQuote: string;
@@ -43,9 +44,8 @@ type PropsMDCC = {
   onClick: React.MouseEventHandler<HTMLDivElement>;
   selected?: boolean;
   strike: number;
-}
+};
 const MarketsDisplayCardsContent = (props: PropsMDCC) => {
-  // console.log('MarketsDisplayCardsContent', props);
   const selectedStyles: React.CSSProperties = {
     gridColumn : (props.selected) ? 'span 2' : '',
     background: (props.selected) ? 'cyan' : '',
@@ -79,6 +79,7 @@ const MarketsDisplayCardsContent = (props: PropsMDCC) => {
     </div>
   );
 };
+
 const MarketsDisplayCards = () => {
   const marketList = useRecoilValue(selectMarketList);
   const [
@@ -86,16 +87,16 @@ const MarketsDisplayCards = () => {
     // setassetQuote
   ] = useRecoilState(atomAssetQuote);
   const [
-    selectedCard,
-    setSelectedCard
+    selectedItem,
+    setSelectedItem
   ] = useState(-1);
   useEffect(() => {
-    console.log('Selected:', selectedCard);
-  }, [selectedCard]) ;
+    console.log('Selected:', selectedItem);
+  }, [selectedItem]) ;
   return (
     <div className={styles['market-display-cards']}>
       {
-        (selectedCard === -1) ?
+        (selectedItem === -1) ?
           <>
             {
 
@@ -107,7 +108,7 @@ const MarketsDisplayCards = () => {
               //   strike: number;
               // }
 
-              // Card not selected present unfiltered list
+              // Card not selected, present unfiltered list
               marketList.map((item, i) => {
                 return <MarketsDisplayCardsContent
                          ask={item.ask}
@@ -117,7 +118,7 @@ const MarketsDisplayCards = () => {
                          key={i}
                          onClick={(e) => {
                            console.log('i', i);
-                           setSelectedCard(i);
+                           setSelectedItem(i);
                          }}
                          strike={item.strike} />
               })
@@ -128,7 +129,7 @@ const MarketsDisplayCards = () => {
             {
               // Present cards up to including selected card
               marketList.map((item, i) => {
-                return (i <= selectedCard) ? <MarketsDisplayCardsContent
+                return (i <= selectedItem) ? <MarketsDisplayCardsContent
                          ask={item.ask}
                          assetQuote={assetQuote}
                          bid={item.bid}
@@ -136,19 +137,19 @@ const MarketsDisplayCards = () => {
                          key={i}
                          onClick={(e) => {
                            console.log('i', i);
-                           setSelectedCard(i);
+                           setSelectedItem(i);
                          }}
-                         selected={(i === selectedCard)}
+                         selected={(i === selectedItem)}
                          strike={item.strike} /> : null
               })
             }
             <div className={styles['experimental-buy-sell-container']}>
-              <MarketsExperimentalBuySell i={selectedCard} />
+              <MarketsExperimentalBuySell i={selectedItem} />
             </div>
             {
               // Present cards after selected card
               marketList.map((item, i) => {
-                return (i > selectedCard) ? <MarketsDisplayCardsContent
+                return (i > selectedItem) ? <MarketsDisplayCardsContent
                          ask={item.ask}
                          assetQuote={assetQuote}
                          bid={item.bid}
@@ -156,7 +157,7 @@ const MarketsDisplayCards = () => {
                          key={i}
                          onClick={(e) => {
                            console.log('i', i);
-                           setSelectedCard(i);
+                           setSelectedItem(i);
                          }}
                          strike={item.strike} /> : null
               })
@@ -177,6 +178,13 @@ const MarketsDisplayTable = () => {
     assetQuote
     // setassetQuote
   ] = useRecoilState(atomAssetQuote);
+  const [
+    selectedItem,
+    setSelectedItem
+  ] = useState(-1);
+  useEffect(() => {
+    console.log('Selected:', selectedItem);
+  }, [selectedItem]) ;
   return (
     <div className={styles['market-display-table']}>
       <table>
@@ -195,15 +203,68 @@ const MarketsDisplayTable = () => {
         </thead>
         <tbody>
         {
-          marketList.map((item, i) => {
-            return (
-              <tr key={i}>
-                <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
-                <td>{item.bid}</td>
-                <td>{item.ask}</td>
-              </tr>
-            );
-          })
+          (selectedItem === -1) ?
+          <>
+          {
+            // Item not selected, present unfiltered
+            // // TODO: tr used 3x, abstract > component
+            marketList.map((item, i) => {
+              return (
+                <tr
+                  key={i}
+                  onClick={(e) => {
+                   console.log('i', i);
+                   setSelectedItem(i);
+                  }}>
+                  <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
+                  <td>{item.bid}</td>
+                  <td>{item.ask}</td>
+                </tr>
+              );
+            })
+          }
+          </> :
+          <>
+            {
+              // Present items up to including selected card
+              // // TODO: tr used 3x, abstract > component
+              marketList.map((item, i) => {
+                return (i <= selectedItem) ? (
+                  <tr
+                    key={i}
+                    onClick={(e) => {
+                     console.log('i', i);
+                     setSelectedItem(i);
+                    }}>
+                    <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
+                    <td>{item.bid}</td>
+                    <td>{item.ask}</td>
+                  </tr>
+                ) : null
+              })
+            }
+            <div className={styles['experimental-buy-sell-container']}>
+              <MarketsExperimentalBuySell i={selectedItem} />
+            </div>
+            {
+              // Present items after selected card
+              // // TODO: tr used 3x, abstract > component
+              marketList.map((item, i) => {
+                return (i > selectedItem) ? (
+                  <tr
+                    key={i}
+                    onClick={(e) => {
+                     console.log('i', i);
+                     setSelectedItem(i);
+                    }}>
+                    <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
+                    <td>{item.bid}</td>
+                    <td>{item.ask}</td>
+                  </tr>
+                ) : null
+              })
+            }
+          </>
         }
         </tbody>
       </table>

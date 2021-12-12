@@ -2,7 +2,7 @@ import {
   atom,
   selector
 } from 'recoil';
-import { Market } from '../types';
+import { Market } from '../models';
 import marketListMock from '../content/marketList.mock.json';
 
 const assetTypes = ['btc', 'eth', 'sol', 'usdc'];
@@ -33,8 +33,8 @@ export const atomMarketType = atom({
 
 export const atomMarketUiStyle = atom({
   key: 'atomMarketUiStyle',
-  default: marketUiStyles[0]
-  // default: marketUiStyles[2]
+  // default: marketUiStyles[0]
+  default: marketUiStyles[2]
 });
 
 // -------

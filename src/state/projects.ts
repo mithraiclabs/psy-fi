@@ -1,5 +1,5 @@
 import data from '../content/projectList.json';
-import { Project } from '../types';
+import { Project } from '../models';
 import {
   atom,
   selector
