@@ -34,7 +34,7 @@ export const atomMarketType = atom({
 export const atomMarketUiStyle = atom({
   key: 'atomMarketUiStyle',
   // default: marketUiStyles[0]
-  default: marketUiStyles[2]
+default: marketUiStyles[2]
 });
 
 // -------

@@ -101,22 +101,8 @@
     text-align: center;
     width: 100%;
   }
-  td {
-    border-top: 1px solid cyan;
-    padding: 7px 0;
-    width: 33%;
-    span {
-      // background: #222;
-      // border: 1px solid cyan;
-      border-radius: 3px;
-      // color: #000;
-      color: cyan;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      line-height: 10px;
-      padding: 1px 5px;
-    }
+  tr {
+    cursor: pointer;
   }
   tr:last-of-type {
     td {
@@ -133,14 +119,26 @@
   tbody tr td:first-of-type {
     font-size: 1.2em;
     font-weight: bold;
-    margin-right: px;
+  }
+  td {
+    border-top: 1px solid cyan;
+    padding: 7px 0;
+    width: 33%;
+  }
+  .mdc-table-asset-quote {
+    color: #555;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 10px;
+    padding: 3px 3px;
   }
 }
 
 .market-experimental-buy-sell {
   div {
-    background: cyan;
-    // color: black;
+    background: $green;
+    color: #111;
   }
   div:first-of-type,
   div:nth-of-type(2) {

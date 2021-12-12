@@ -25,7 +25,7 @@ type PropsMEBS = {
   i: number;
 };
 const MarketsExperimentalBuySell = (props: PropsMEBS) => {
-  console.log('MarketsExperimentalBuySell', JSON.stringify(props, null, 2));
+  // console.log('MarketsExperimentalBuySell', JSON.stringify(props, null, 2));
   return (
     <div className={styles['market-experimental-buy-sell']}>
       <div>Buy</div>
@@ -40,6 +40,7 @@ type PropsMDCC = {
   ask: number;
   assetQuote: string;
   bid: number;
+  breakeven?: number;
   i: number;
   onClick: React.MouseEventHandler<HTMLDivElement>;
   selected?: boolean;
@@ -68,7 +69,7 @@ const MarketsDisplayCardsContent = (props: PropsMDCC) => {
             <td>{props.bid}</td>
           </tr>
           <tr>
-            <td>Ask</td>
+            <td>ask</td>
             <td>{props.ask}</td>
           </tr>
         </tbody>
@@ -114,6 +115,7 @@ const MarketsDisplayCards = () => {
                          ask={item.ask}
                          assetQuote={assetQuote}
                          bid={item.bid}
+                         breakeven={item.breakeven}
                          i={i}
                          key={i}
                          onClick={(e) => {
@@ -184,10 +186,10 @@ const MarketsDisplayTable = () => {
   ] = useState(-1);
   useEffect(() => {
     console.log('Selected:', selectedItem);
-  }, [selectedItem]) ;
+  }, [selectedItem]);
   return (
     <div className={styles['market-display-table']}>
-      <table>
+      <table cellPadding='0' cellSpacing='0'>
         <thead>
           <tr>
             <th>
@@ -216,7 +218,7 @@ const MarketsDisplayTable = () => {
                    console.log('i', i);
                    setSelectedItem(i);
                   }}>
-                  <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
+                  <td>{item.strike} <span className={styles['mdc-table-asset-quote']}>{assetQuote.toUpperCase()}</span></td>
                   <td>{item.bid}</td>
                   <td>{item.ask}</td>
                 </tr>
@@ -229,13 +231,20 @@ const MarketsDisplayTable = () => {
               // Present items up to including selected card
               // // TODO: tr used 3x, abstract > component
               marketList.map((item, i) => {
+                const selectedStyles: React.CSSProperties = {
+                  // gridColumn : (props.selected) ? 'span 2' : '',
+                  background: (i === selectedItem) ? 'cyan' : '',
+                  color: (i === selectedItem) ? '#111' : '',
+                  borderColor: (i === selectedItem) ? 'cyan' : '#555'
+                };
                 return (i <= selectedItem) ? (
                   <tr
                     key={i}
                     onClick={(e) => {
                      console.log('i', i);
                      setSelectedItem(i);
-                    }}>
+                    }}
+                    style={selectedStyles}>
                     <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
                     <td>{item.bid}</td>
                     <td>{item.ask}</td>
@@ -243,9 +252,13 @@ const MarketsDisplayTable = () => {
                 ) : null
               })
             }
-            <div className={styles['experimental-buy-sell-container']}>
-              <MarketsExperimentalBuySell i={selectedItem} />
-            </div>
+            <tr>
+              <td colSpan={3}>
+                <div className={styles['experimental-buy-sell-container']}>
+                  <MarketsExperimentalBuySell i={selectedItem} />
+                </div>
+              </td>
+            </tr>
             {
               // Present items after selected card
               // // TODO: tr used 3x, abstract > component
