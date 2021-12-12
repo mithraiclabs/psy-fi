@@ -8,6 +8,8 @@ import {
 import {
   // selectAssetUnderlying,
   atomAssetQuote,
+  atomLevelsDetail,
+  atomLevelsDetailHeaderDemo,
   // atomMarketList,
   atomMarketType,
   atomMarketUiStyle,
@@ -23,6 +25,7 @@ import {
 */
 type PropsMEBS = {
   i: number;
+  levelsDetail: number;
 };
 const MarketsExperimentalBuySell = (props: PropsMEBS) => {
   // console.log('MarketsExperimentalBuySell', JSON.stringify(props, null, 2));
@@ -32,6 +35,12 @@ const MarketsExperimentalBuySell = (props: PropsMEBS) => {
       <div>Sell</div>
       <div />
       <div />
+      {
+        (props.levelsDetail === 2 || props.levelsDetail === 3) ? <div>Lv2 Detail</div> : null
+      }
+      {
+        (props.levelsDetail === 3) ? <div>Lv3 Detail</div> : null
+      }
     </div>
   );
 };
@@ -42,6 +51,8 @@ type PropsMDCC = {
   bid: number;
   breakeven?: number;
   i: number;
+  levelsDetail: number;
+  levelsDetailHeaderDemo: number;
   onClick: React.MouseEventHandler<HTMLDivElement>;
   selected?: boolean;
   strike: number;
@@ -72,6 +83,24 @@ const MarketsDisplayCardsContent = (props: PropsMDCC) => {
             <td>ask</td>
             <td>{props.ask}</td>
           </tr>
+            {
+              (props.levelsDetailHeaderDemo === 2 || props.levelsDetailHeaderDemo === 3) ?
+              <>
+              <tr>
+                <td>Lv2</td>
+                <td>x</td>
+              </tr>
+              </> : null
+            }
+            {
+              (props.levelsDetailHeaderDemo === 3) ?
+              <>
+              <tr>
+                <td>Lv3</td>
+                <td>y</td>
+              </tr>
+              </> : null
+            }
         </tbody>
       </table>
       <div className={styles['mdc-card-asset-quote']}>
@@ -88,11 +117,21 @@ const MarketsDisplayCards = () => {
     // setassetQuote
   ] = useRecoilState(atomAssetQuote);
   const [
+    levelsDetail
+    // setLevelsDetail
+  ] = useRecoilState(atomLevelsDetail);
+  console.log('levelsDetail', levelsDetail);
+  const [
+    levelsDetailHeaderDemo
+    // setLevelsDetailThDemo
+  ] = useRecoilState(atomLevelsDetailHeaderDemo);
+  console.log('levelsDetailHeaderDemo', levelsDetailHeaderDemo);
+  const [
     selectedItem,
     setSelectedItem
   ] = useState(-1);
   useEffect(() => {
-    console.log('Selected:', selectedItem);
+    console.log('setSelectedItem:', selectedItem);
   }, [selectedItem]) ;
   return (
     <div className={styles['market-display-cards']}>
@@ -118,8 +157,10 @@ const MarketsDisplayCards = () => {
                          breakeven={item.breakeven}
                          i={i}
                          key={i}
+                         levelsDetail={levelsDetail}
+                         levelsDetailHeaderDemo={levelsDetailHeaderDemo}
                          onClick={(e) => {
-                           console.log('i', i);
+                           console.log('card click, i:', i);
                            setSelectedItem(i);
                          }}
                          strike={item.strike} />
@@ -137,8 +178,10 @@ const MarketsDisplayCards = () => {
                          bid={item.bid}
                          i={i}
                          key={i}
+                         levelsDetail={levelsDetail}
+                         levelsDetailHeaderDemo={levelsDetailHeaderDemo}
                          onClick={(e) => {
-                           console.log('i', i);
+                           console.log('card click, i:', i);
                            setSelectedItem(i);
                          }}
                          selected={(i === selectedItem)}
@@ -146,7 +189,7 @@ const MarketsDisplayCards = () => {
               })
             }
             <div className={styles['experimental-buy-sell-container']}>
-              <MarketsExperimentalBuySell i={selectedItem} />
+              <MarketsExperimentalBuySell i={selectedItem} levelsDetail={levelsDetail} />
             </div>
             {
               // Present cards after selected card
@@ -157,8 +200,10 @@ const MarketsDisplayCards = () => {
                          bid={item.bid}
                          i={i}
                          key={i}
+                         levelsDetail={levelsDetail}
+                         levelsDetailHeaderDemo={levelsDetailHeaderDemo}
                          onClick={(e) => {
-                           console.log('i', i);
+                           console.log('card click, i:', i);
                            setSelectedItem(i);
                          }}
                          strike={item.strike} /> : null
@@ -184,8 +229,18 @@ const MarketsDisplayTable = () => {
     selectedItem,
     setSelectedItem
   ] = useState(-1);
+  const [
+    levelsDetail
+    // setassetQuote
+  ] = useRecoilState(atomLevelsDetail);
+  console.log('levelsDetail', levelsDetail);
+  const [
+    levelsDetailHeaderDemo
+    // setLevelsDetailThDemo
+  ] = useRecoilState(atomLevelsDetailHeaderDemo);
+  console.log('levelsDetailHeaderDemo', levelsDetailHeaderDemo);
   useEffect(() => {
-    console.log('Selected:', selectedItem);
+    console.log('setSelectedItem:', selectedItem);
   }, [selectedItem]);
   return (
     <div className={styles['market-display-table']}>
@@ -201,6 +256,18 @@ const MarketsDisplayTable = () => {
             <th>
               Ask
             </th>
+            {
+              (levelsDetailHeaderDemo === 2 || levelsDetailHeaderDemo === 3) ?
+              <th>
+                Lv2
+              </th> : null
+            }
+            {
+              (levelsDetailHeaderDemo === 3) ?
+              <th>
+                Lv3
+              </th> : null
+            }
           </tr>
         </thead>
         <tbody>
@@ -215,7 +282,7 @@ const MarketsDisplayTable = () => {
                 <tr
                   key={i}
                   onClick={(e) => {
-                   console.log('i', i);
+                   console.log('tr click, i:', i);
                    setSelectedItem(i);
                   }}>
                   <td>
@@ -247,7 +314,7 @@ const MarketsDisplayTable = () => {
                   <tr
                     key={i}
                     onClick={(e) => {
-                     console.log('i', i);
+                     console.log('tr click, i:', i);
                      setSelectedItem(i);
                     }}
                     style={selectedStyles}>
@@ -266,7 +333,7 @@ const MarketsDisplayTable = () => {
             <tr>
               <td colSpan={3}>
                 <div className={styles['experimental-buy-sell-container']}>
-                  <MarketsExperimentalBuySell i={selectedItem} />
+                  <MarketsExperimentalBuySell i={selectedItem} levelsDetail={levelsDetail} />
                 </div>
               </td>
             </tr>
@@ -278,7 +345,7 @@ const MarketsDisplayTable = () => {
                   <tr
                     key={i}
                     onClick={(e) => {
-                     console.log('i', i);
+                     console.log('tr click, i:', i);
                      setSelectedItem(i);
                     }}>
                     <td>

@@ -90,7 +90,7 @@
     color: #000;
     border: 1px solid cyan;
     grid-column: span 2;
-    height: 169px;
+    // height: 169px;
     padding: 20px;
   }
 }
@@ -173,5 +173,11 @@
     margin: 0 auto;
     margin-top: 15px;
     width: 69%;
+  }
+  div:nth-of-type(5),
+  div:nth-of-type(6) {
+    background: none;
+    color: #fff;
+    font-weight: normal;
   }
 }
