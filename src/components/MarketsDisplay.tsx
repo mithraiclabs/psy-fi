@@ -218,7 +218,12 @@ const MarketsDisplayTable = () => {
                    console.log('i', i);
                    setSelectedItem(i);
                   }}>
-                  <td>{item.strike} <span className={styles['mdc-table-asset-quote']}>{assetQuote.toUpperCase()}</span></td>
+                  <td>
+                    {item.strike}&nbsp;
+                    <span className={styles['mdc-table-asset-quote']}>
+                      {assetQuote.toUpperCase()}
+                    </span>
+                  </td>
                   <td>{item.bid}</td>
                   <td>{item.ask}</td>
                 </tr>
@@ -235,7 +240,8 @@ const MarketsDisplayTable = () => {
                   // gridColumn : (props.selected) ? 'span 2' : '',
                   background: (i === selectedItem) ? 'cyan' : '',
                   color: (i === selectedItem) ? '#111' : '',
-                  borderColor: (i === selectedItem) ? 'cyan' : '#555'
+                  borderColor: (i === selectedItem) ? 'cyan' : '#555',
+                  fontSize: (i === selectedItem) ? '1.1rem' : ''
                 };
                 return (i <= selectedItem) ? (
                   <tr
@@ -245,7 +251,12 @@ const MarketsDisplayTable = () => {
                      setSelectedItem(i);
                     }}
                     style={selectedStyles}>
-                    <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
+                    <td>
+                      {item.strike}&nbsp;
+                      <span className={styles['mdc-table-asset-quote']}>
+                        {assetQuote.toUpperCase()}
+                      </span>
+                    </td>
                     <td>{item.bid}</td>
                     <td>{item.ask}</td>
                   </tr>
@@ -270,7 +281,12 @@ const MarketsDisplayTable = () => {
                      console.log('i', i);
                      setSelectedItem(i);
                     }}>
-                    <td>{item.strike} <span>{assetQuote.toUpperCase()}</span></td>
+                    <td>
+                      {item.strike}&nbsp;
+                      <span className={styles['mdc-table-asset-quote']}>
+                        {assetQuote.toUpperCase()}
+                      </span>
+                    </td>
                     <td>{item.bid}</td>
                     <td>{item.ask}</td>
                   </tr>

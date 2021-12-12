@@ -103,6 +103,11 @@
   }
   tr {
     cursor: pointer;
+    // &:hover {
+    //   td {
+    //     background: lighten(#111, 5%);;
+    //   }
+    // }
   }
   tr:last-of-type {
     td {
@@ -110,19 +115,20 @@
     };
   }
   thead th {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
+    padding-bottom: 12px;
   }
-  tbody tr:nth-child(odd) {
-    background: darken(#111, 2%);
-  }
+  // tbody tr:nth-child(odd) {
+  //   background: lighten(#111, 3%);
+  // }
   tbody tr td:first-of-type {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 600;
   }
   td {
     border-top: 1px solid cyan;
-    padding: 7px 0;
+    padding: 12px 0;
     width: 33%;
   }
   .mdc-table-asset-quote {
