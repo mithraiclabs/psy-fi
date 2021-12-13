@@ -12,7 +12,7 @@ const Market = () => {
       {
         wallet?.connected ? null : <div className={styles_user.connect}>Please Connect Wallet</div>
       }
-      <h1 className={styles['page-title']}>Market Page Component</h1>
+      <h1 className={styles['page-title']}>Market Component</h1>
       <MarketsDisplay />
     </section>
   )

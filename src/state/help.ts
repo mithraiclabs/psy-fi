@@ -5,8 +5,8 @@ import {
 
 export const atomHelpEnabled = atom({
   key: 'atomHelpEnabled',
-  default: true
-  // default: false
+  // default: true
+  default: false
 });
 
 export const selectHelpEnabled = selector({

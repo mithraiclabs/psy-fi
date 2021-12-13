@@ -13,12 +13,18 @@ const marketUiStyles = ['cards', 'list', 'table'];
 
 export const atomAssetQuote = atom({
   key: 'atomAssetQuote',
-  default: assetTypes[3]
+  // default: assetTypes[0] // btc
+  // default: assetTypes[1] // eth
+  // default: assetTypes[2] // sol
+  default: assetTypes[3] // usdc
 });
 
 export const atomAssetUnderlying = atom({
   key: 'atomAssetUnderlying',
-  default: assetTypes[0]
+  default: assetTypes[0] // btc
+  // default: assetTypes[1] // eth
+  // default: assetTypes[2] // sol
+  // default: assetTypes[3] // usdc
 });
 
 export const atomMarketList = atom<Market[]>({
@@ -28,13 +34,14 @@ export const atomMarketList = atom<Market[]>({
 
 export const atomMarketType = atom({
   key: 'atomMarketType',
-  default: marketTypes[0]
+  default: marketTypes[0] // calls
+  // default: marketTypes[1] // puts
 });
 
 export const atomMarketUiStyle = atom({
   key: 'atomMarketUiStyle',
-  // default: marketUiStyles[0] // cards
-default: marketUiStyles[2] // table
+  default: marketUiStyles[0] // cards
+  // default: marketUiStyles[2] // table
 });
 
 // -------

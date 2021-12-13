@@ -27,6 +27,7 @@ type PropsMEBS = {
   i: number;
   levelsDetail: number;
 };
+
 const MarketsExperimentalBuySell = (props: PropsMEBS) => {
   // console.log('MarketsExperimentalBuySell', JSON.stringify(props, null, 2));
   return (
@@ -50,6 +51,7 @@ type PropsMDCC = {
   assetQuote: string;
   bid: number;
   breakeven?: number;
+  default?: boolean; // experimental
   i: number;
   levelsDetail: number;
   levelsDetailHeaderDemo: number;
@@ -57,12 +59,13 @@ type PropsMDCC = {
   selected?: boolean;
   strike: number;
 };
+
 const MarketsDisplayCardsContent = (props: PropsMDCC) => {
   const selectedStyles: React.CSSProperties = {
     gridColumn : (props.selected) ? 'span 2' : '',
     background: (props.selected) ? 'cyan' : '',
     color: (props.selected) ? '#111' : '',
-    borderColor: (props.selected) ? 'cyan' : '#555'
+    borderColor: (props.selected) ? 'cyan' : (props.default) ? 'cyan' : '#888' // experimental
   };
   return (
     <div
@@ -114,7 +117,7 @@ const MarketsDisplayCards = () => {
   const marketList = useRecoilValue(selectMarketList);
   const [
     assetQuote
-    // setassetQuote
+    // setAssetQuote
   ] = useRecoilState(atomAssetQuote);
   const [
     levelsDetail
@@ -155,6 +158,7 @@ const MarketsDisplayCards = () => {
                          assetQuote={assetQuote}
                          bid={item.bid}
                          breakeven={item.breakeven}
+                         default={true} // experimental
                          i={i}
                          key={i}
                          levelsDetail={levelsDetail}
@@ -223,7 +227,7 @@ const MarketsDisplayTable = () => {
   const marketList = useRecoilValue(selectMarketList);
   const [
     assetQuote
-    // setassetQuote
+    // setAssetQuote
   ] = useRecoilState(atomAssetQuote);
   const [
     selectedItem,
@@ -231,7 +235,7 @@ const MarketsDisplayTable = () => {
   ] = useState(-1);
   const [
     levelsDetail
-    // setassetQuote
+    // setAssetQuote
   ] = useRecoilState(atomLevelsDetail);
   console.log('levelsDetail', levelsDetail);
   const [
@@ -302,13 +306,14 @@ const MarketsDisplayTable = () => {
             {
               // Present items up to including selected card
               // // TODO: tr used 3x, abstract > component
+              // // TODO: move styling to style sheets
               marketList.map((item, i) => {
                 const selectedStyles: React.CSSProperties = {
                   // gridColumn : (props.selected) ? 'span 2' : '',
                   background: (i === selectedItem) ? 'cyan' : '',
                   color: (i === selectedItem) ? '#111' : '',
                   borderColor: (i === selectedItem) ? 'cyan' : '#555',
-                  fontSize: (i === selectedItem) ? '1.1rem' : ''
+                  fontSize: (i === selectedItem) ? '1.2rem' : ''
                 };
                 return (i <= selectedItem) ? (
                   <tr
@@ -318,14 +323,28 @@ const MarketsDisplayTable = () => {
                      setSelectedItem(i);
                     }}
                     style={selectedStyles}>
-                    <td>
+                    <td
+                      style={{
+                        borderBottomColor: (i !== selectedItem) ? '#888' : '',
+                        borderTopColor: (i !== selectedItem) ? '#888' : '',
+                        padding: (i === selectedItem) ? '1.1em 1.1em' : ''
+                        // paddingLeft: (i === selectedItem) ? '1.1em' : ''
+                      }}>
                       {item.strike}&nbsp;
                       <span className={styles['mdc-table-asset-quote']}>
                         {assetQuote.toUpperCase()}
                       </span>
                     </td>
-                    <td>{item.bid}</td>
-                    <td>{item.ask}</td>
+                    <td
+                      style={{
+                        borderBottomColor: (i !== selectedItem) ? '#888' : '',
+                        borderTopColor: (i !== selectedItem) ? '#888' : ''
+                      }}>{item.bid}</td>
+                    <td
+                      style={{
+                        borderBottomColor: (i !== selectedItem) ? '#888' : '',
+                        borderTopColor: (i !== selectedItem) ? '#888' : ''
+                      }}>{item.ask}</td>
                   </tr>
                 ) : null
               })
@@ -348,14 +367,26 @@ const MarketsDisplayTable = () => {
                      console.log('tr click, i:', i);
                      setSelectedItem(i);
                     }}>
-                    <td>
+                    <td
+                      style={{
+                        borderBottomColor: (i !== selectedItem) ? '#888' : '',
+                        borderTopColor: (i !== selectedItem) ? '#888' : ''
+                      }}>
                       {item.strike}&nbsp;
                       <span className={styles['mdc-table-asset-quote']}>
                         {assetQuote.toUpperCase()}
                       </span>
                     </td>
-                    <td>{item.bid}</td>
-                    <td>{item.ask}</td>
+                    <td
+                      style={{
+                        borderBottomColor: (i !== selectedItem) ? '#888' : '',
+                        borderTopColor: (i !== selectedItem) ? '#888' : ''
+                      }}>{item.bid}</td>
+                    <td
+                      style={{
+                        borderBottomColor: (i !== selectedItem) ? '#888' : '',
+                        borderTopColor: (i !== selectedItem) ? '#888' : ''
+                      }}>{item.ask}</td>
                   </tr>
                 ) : null
               })
@@ -372,7 +403,7 @@ const MarketsDisplay = () => {
   const helpEnabled = useRecoilValue(selectHelpEnabled);
   // const [
   //   assetQuote
-  //   // setassetQuote
+  //   // setAssetQuote
   // ] = useRecoilState(atomAssetQuote);
   const [
     assetUnderlying
