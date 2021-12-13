@@ -15,13 +15,28 @@ Coming Soon
 <ul>
   <li>Project planning</li>
   <li>First iterations blockchain setup</li>
-  <li>Lo-Res w/ mock data</li>
+  <li>Build out UX lo-res with mock data</li>
   <li>Hi-Res blockchain integration</li>
   <li>Devnet</li>
   <li>Hi-Res UX Iteration 1</li>
   <li>Mainnet</li>
   <li>Hi-Res UX Iteration X</li>
 </ul>
+
+Testing Current Build
+----------------------
+
+Present focus is scaffolding the app by way of select components.
+
+The markets view could be tested here:
+
+http://localhost:1414/market
+
+To toggle different settings, change the recoil config code:
+
+- root/state/help (toggle help)
+- root/state/levels (toggle different levels of data)
+- root/state/markets (toggle underlying & assets etc, toggle grid & table views)
 
 ```
 
