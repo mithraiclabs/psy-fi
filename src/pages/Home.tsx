@@ -9,9 +9,6 @@ const Home = () => {
   const wallet = useConnectedWallet();
   return (
     <section className={styles.home}>
-      {
-        wallet?.connected ? null : <h1>Please Connect Wallet<br /><br /></h1>
-      }
       <ContentHome />
     </section>
   )
