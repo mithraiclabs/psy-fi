@@ -40,25 +40,6 @@ To toggle different settings, change the recoil config code:
 
 ```
 
-### Getting Started
-* Run the Solana blockchain with the dependent programs
-    * `npx ts-node buildlab/whole-shebang/index.ts`
-
-### DevTools
-
-The project uses recoil and some experimental dev tools.
-
-`src/components/DevTools`
-
-In the browser, you can use these commands:
-
-- changeMonitorKey `ctrl-m`
-- changePositionKey `ctrl-q`
-- toggleVisibilityKey `ctrl-h`
-
-The console and dock monitor will update after recoil state changes
-
-
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -105,3 +86,24 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+### DevTools
+
+The project uses recoil and some experimental dev tools.
+
+`src/components/DevTools`
+
+In the browser, you can use these commands:
+
+- changeMonitorKey `ctrl-m`
+- changePositionKey `ctrl-q`
+- toggleVisibilityKey `ctrl-h`
+
+The console and dock monitor will update after recoil state changes
+
+## Getting Started with Solana
+
+At present time this is not required to run the app. Stay tuned
+
+* Run the Solana blockchain with the dependent programs
+    * `npx ts-node buildlab/whole-shebang/index.ts`
