@@ -83,7 +83,7 @@ const MarketsDisplayCardsContent = (props: PropsMDCC) => {
             <td>{props.bid}</td>
           </tr>
           <tr>
-            <td>ask</td>
+            <td>Ask</td>
             <td>{props.ask}</td>
           </tr>
             {
